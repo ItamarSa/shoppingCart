@@ -1,7 +1,7 @@
 import { productService } from '../../services/product.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_PRODUCT, ADD_ORDER, REMOVE_PRODUCT, SET_FILTER, SET_PRODUCTS, UNDO_REMOVE_PRODUCT, UPDATE_PRODUCT } from '../reducer/product.reducer.js'
+import { ADD_PRODUCT, ADD_ORDER, REMOVE_PRODUCT, SET_FILTER, SET_PRODUCTS, UNDO_REMOVE_PRODUCT, UPDATE_PRODUCT, ADD_TO_CART } from '../reducer/product.reducer.js'
 export const RESET_FILTER_BY = 'RESET_FILTER_BY';
 
 // Action Creators:
@@ -29,6 +29,13 @@ export function getActionUpdateProduct(product) {
         type: UPDATE_PRODUCT,
         product
     }
+}
+
+export function addToCart(product) {
+    store.dispatch({
+        type: ADD_TO_CART,
+        product
+    })
 }
 
 export async function loadProducts() {
