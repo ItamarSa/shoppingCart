@@ -1,4 +1,4 @@
-// import { productService } from "../../services/product.service."
+import { productService } from "../../services/product.service"
 import { RESET_FILTER_BY } from "../action/product.action"
 
 export const SET_PRODUCTS = 'SET_PRODUCTS'

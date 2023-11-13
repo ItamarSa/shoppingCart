@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux'
+import { combineReducers, createStore } from 'redux'
 
 import { productReducer } from './reducer/product.reducer.js'
 
