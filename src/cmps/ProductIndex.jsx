@@ -1,6 +1,9 @@
 import { useEffect } from "react"
+import { ProductList } from "./ProductList"
 
 export function ProductIndex(){
+
+    const products = useSelector(storeState => storeState.productModule.products)
 
     useEffect(() => {
         try {
@@ -32,6 +35,7 @@ export function ProductIndex(){
 return(
     <div className="products">
         <ProductList
+        products={products}
         onAddToCart={onAddToCart}
         />
 

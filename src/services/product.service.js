@@ -69,12 +69,12 @@ async function save(product) {
 function getDemoProduct() {
     return {
         imgUrl: getImgs(),
-        name: utilService.makeLorem(1),
+        // name: utilService.makeLorem(1),
         title: utilService.makeLorem(5),
         price: utilService.getRandomIntInclusive(100, 300),
-        rate: parseFloat((utilService.getRandomIntInclusive(20, 50) * 0.1).toPrecision(2)),
-        createdAt: utilService.formatDateForTimeAgo(new Date()),
-        tags: utilService.makeTag(1),
+        // rate: parseFloat((utilService.getRandomIntInclusive(20, 50) * 0.1).toPrecision(2)),
+        // createdAt: utilService.formatDateForTimeAgo(new Date()),
+        // tags: utilService.makeTag(1),
         // inStock: utilService.randomTrueFalse(),
         // icon: utilService.makeImage()
     }
@@ -82,13 +82,13 @@ function getDemoProduct() {
 function getEmptyProduct() {
     return {
         imgUrl: [],
-        name: '',
+        // name: '',
         title: '',
         price: '',
-        tags:utilService.makeTag(1),
-        rate: parseFloat((utilService.getRandomIntInclusive(20, 50) * 0.1).toPrecision(2)),
-        createdAt: (Date.now()),
-        tags: utilService.makeTag(1),
+        // tags:utilService.makeTag(1),
+        // rate: parseFloat((utilService.getRandomIntInclusive(20, 50) * 0.1).toPrecision(2)),
+        // createdAt: (Date.now()),
+        // tags: utilService.makeTag(1),
     }
 }
 function getProductTags() {
