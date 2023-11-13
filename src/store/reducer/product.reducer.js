@@ -1,5 +1,5 @@
 import { productService } from "../../services/product.service"
-import { RESET_FILTER_BY } from "../action/product.action"
+// import { RESET_FILTER_BY } from "../action/product.action"
 
 export const SET_PRODUCTS = 'SET_PRODUCTS'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
@@ -49,9 +49,9 @@ export function productReducer(state = initialState, action) {
         case SET_FILTER:
             return { ...state, filterBy: action.filterBy }
 
-            case RESET_FILTER_BY:
-                // newState = { ...state, filterBy: productService.getDefaultFilter() };
-                break
+            // case RESET_FILTER_BY:
+            //     // newState = { ...state, filterBy: productService.getDefaultFilter() };
+            //     break
 
         case ADD_ORDER:
             newState = { ...state, orders: [...state.orders, action.order] }
