@@ -9,7 +9,7 @@ export function ProductPreview(onAddToCart, product) {
                     <p className="product-title">{product.title}</p>
                     <p className="product-price">{product.price}</p>
                 </div>
-                <button className="cart-btn" onClick={onAddToCart()}></button>
+                <button className="cart-btn" onClick={() => onAddToCart}></button>
 
 
             </div>
