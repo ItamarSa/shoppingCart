@@ -3,7 +3,7 @@ import { ProductList } from "./ProductList"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { productService } from "../services/product.service"
-import { addProduct, loadProducts } from "../store/action/product.action"
+import { addProduct, addToCart, loadProducts, removeFromCart } from "../store/action/product.action"
 
 export function ProductIndex() {
 
@@ -30,6 +30,7 @@ export function ProductIndex() {
         addToCart(product)
         showSuccessMsg('Added to Cart')
     }
+    
     async function onAddProduct() {
 
         const product = productService.getDemoProduct()
@@ -40,6 +41,7 @@ export function ProductIndex() {
             showErrorMsg('Cannot add product')
         }
     }
+    
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
     const currentProducts = products.slice(
@@ -53,7 +55,7 @@ export function ProductIndex() {
     return (
         <div className="products">
             <button onClick={() => onAddProduct()}>+</button>
-            <ProductList products={currentProducts} onAddToCart={onAddToCart} />
+            <ProductList products={currentProducts} onAddToCart={onAddToCart}  />
 
             <div className="pagination">
                 <button

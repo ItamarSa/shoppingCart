@@ -1,7 +1,7 @@
 import { productService } from '../../services/product.service.js'
 import { store } from '../store.js'
 import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-import { ADD_PRODUCT, ADD_ORDER, REMOVE_PRODUCT, SET_FILTER, SET_PRODUCTS, UNDO_REMOVE_PRODUCT, UPDATE_PRODUCT } from '../reducer/product.reducer.js'
+import { ADD_PRODUCT, ADD_ORDER, REMOVE_PRODUCT, SET_FILTER, SET_PRODUCTS, UNDO_REMOVE_PRODUCT, UPDATE_PRODUCT, REMOVE_FROM_CART, ADD_TO_CART } from '../reducer/product.reducer.js'
 export const RESET_FILTER_BY = 'RESET_FILTER_BY';
 
 // Action Creators:
@@ -75,6 +75,7 @@ export async function loadProductsUser(userId) {
   }
 
 export async function addProduct(product) {
+    console.log('product:', product)
     try {
         const savedProduct = await productService.save(product)
         console.log('Added Product', savedProduct)
@@ -94,6 +95,20 @@ export async function addOrder(order) {
         console.log('Cannot add order', err)
         throw err
     }
+}
+export function addToCart(product) {
+    console.log('productcart:', product)
+    store.dispatch({
+        type: ADD_TO_CART,
+        product
+    })
+}
+export function removeFromCart(productId) {
+    console.log('productId:', productId)
+    store.dispatch({
+        type: REMOVE_FROM_CART,
+        productId
+    })
 }
 export async function updateProduct(product) {
     try {
