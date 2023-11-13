@@ -7,21 +7,27 @@ const homeSymbol = <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http:/
 export function AppHeader() {
     const dispatch = useDispatch()
     const isCartShown = useSelector(storeState => storeState.isCartShown)
+    // const count = useSelector(storeState => storeState.count)
+
+    // function changeCount(diff) {
+    //     dispatch({type:'CHANGE_BY', diff})
+    // }
+
 
 
     return (
-        <header className="main-header">
-            <NavLink className="btn" title="home" to="/">{homeSymbol}</NavLink>
-            <NavLink className="btn" title="about" to="/about">ABOUT US</NavLink>
-            <NavLink className="btn" title="contact" to="/contact">CONTACT US</NavLink>
-            <NavLink className="btn" title="cart" to="/cart">
-                <a href="#" onClick={(ev) => {
-                    // ev.preventDefault()
-                    dispatch({ type: SET_CART_IS_SHOWN, isCartShown: !isCartShown })
-                }}>
-                    🛒 Cart
-                </a>
-            </NavLink>
-        </header>
+        <>
+            <header className="main-header">
+                <NavLink className="btn" title="home" to="/">{homeSymbol}</NavLink>
+                <NavLink className="btn" title="about" to="/about">ABOUT US</NavLink>
+                <NavLink className="btn" title="contact" to="/contact">CONTACT US</NavLink>
+                <NavLink className="btn" title="cart" to="/cart" onClick={() => {
+                        dispatch({ type: SET_CART_IS_SHOWN, isCartShown: !isCartShown })
+                    }}>
+                        🛒 Cart
+                </NavLink>
+            </header>
+            <img src="assets/img/mallImg.jpg" alt="mall-img" />
+        </>
     )
 }

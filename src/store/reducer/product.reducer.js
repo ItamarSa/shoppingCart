@@ -23,6 +23,7 @@ const initialState = {
     orders: [],
     cart: [],
     lastRemovedProduct: null,
+    shoppingCart: [],
     // filterBy: productService.getDefaultFilter()
 }
 

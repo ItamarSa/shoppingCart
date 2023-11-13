@@ -31,6 +31,13 @@ export function getActionUpdateProduct(product) {
     }
 }
 
+export function addToCart(product) {
+    store.dispatch({
+        type: ADD_TO_CART,
+        product
+    })
+}
+
 export async function loadProducts() {
     try {
 
