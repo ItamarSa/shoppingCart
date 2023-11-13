@@ -7,7 +7,6 @@ import { UserMsg } from './cmps/UserMsg'
 import { ProductIndex } from './cmps/ProductIndex'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
-import { HomePage } from './pages/HomePage'
 
 
 
@@ -20,7 +19,7 @@ export function RootCmp() {
                 <UserMsg />
                 <Routes>
                     {routes.map(route => <Route key={route.path} exact={true} element={route.component} path={route.path} />)}
-                    <Route path='/' element={<HomePage />} />
+                    <Route path='/' element={<ProductIndex />} />
                     <Route element={<ProductIndex />} path='/products' />
                 </Routes>
             </div>
