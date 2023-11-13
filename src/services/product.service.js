@@ -1,20 +1,21 @@
+import { storageService } from "./async-storage.service";
 import { utilService } from "./util.service";
 
 const STORAGE_KEY = 'productDB'
 
-export const productService={
+export const productService = {
     query,
     getById,
     save,
     remove,
     getDemoProduct,
     getImgs
-    
+
 }
 const productImages = [
     ['https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/0f1b5e6ec7eb22920025104af1eab9af-1694674627/KENMAN%20DESIGN/do-modern-minimalist-business-logo-design-and-branding.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/07f29f3eb40628f942a34779ca914907-1695137958/RINGGER%20ARCHITEKTUR%20/do-modern-minimalist-business-logo-design-and-branding.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/e9316ca7ab39a63cbe961396956852aa-1694918421/EDMEE/do-modern-minimalist-business-logo-design-and-branding.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/193a0d1808861534b1e4327b8400e93e-1694757454/WYLD/do-modern-minimalist-business-logo-design-and-branding.jpg'],
     ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/234808196/original/d5df4c282212d9efb6a1a579cd48155e4bffb1ae/design-premium-and-trendy-minimal-logo-design-within-24-hour.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/234808196/original/7f92c0bad6ba38b1968f99537962ebe35ee64f7d/design-premium-and-trendy-minimal-logo-design-within-24-hour.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/234808196/original/160f2df38250e10839949d7deaf973e42b76281f/design-premium-and-trendy-minimal-logo-design-within-24-hour.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/5acb4ce8f640333a7ad8ac85ff66c017-1698252423/Owens%20Knife%20Works%20modi_1-01/design-premium-and-trendy-minimal-logo-design-within-24-hour.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/52a84db3ea8ffa08333b5b1d396b65d4-1698092617/Hairextensions%20by%20Zuhal-02/design-premium-and-trendy-minimal-logo-design-within-24-hour.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/e0ccd0151d5dc097b4fcdd5921c3cab8-1698149425/EMPOWER-M1/design-premium-and-trendy-minimal-logo-design-within-24-hour.jpg'],
-    ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/142221195/original/f654b68f3ceac0a5173ecc023b2e5c46cb85ddd2/redesign-edit-or-update-your-existing-logo-creatively.jpg','https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/142221195/original/6543f23e37de81406041dffc730d8b0b3c839c2c/redesign-edit-or-update-your-existing-logo-creatively.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/142221195/original/bbc3a10c870ac317be821f0579cc6798ea631eb5/redesign-edit-or-update-your-existing-logo-creatively.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/ea3637802e1658a7ab6af77473a74720-1698688821/Lindse%20Rose%20Logo-01/redesign-edit-or-update-your-existing-logo-creatively.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/433999a046cc2896f356b344a472740d-1698167724/Nazareth%20school%20logo/redesign-edit-or-update-your-existing-logo-creatively.png'],
+    ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/142221195/original/f654b68f3ceac0a5173ecc023b2e5c46cb85ddd2/redesign-edit-or-update-your-existing-logo-creatively.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/142221195/original/6543f23e37de81406041dffc730d8b0b3c839c2c/redesign-edit-or-update-your-existing-logo-creatively.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/142221195/original/bbc3a10c870ac317be821f0579cc6798ea631eb5/redesign-edit-or-update-your-existing-logo-creatively.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/ea3637802e1658a7ab6af77473a74720-1698688821/Lindse%20Rose%20Logo-01/redesign-edit-or-update-your-existing-logo-creatively.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/433999a046cc2896f356b344a472740d-1698167724/Nazareth%20school%20logo/redesign-edit-or-update-your-existing-logo-creatively.png'],
     ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/104008641/original/7aa15382f444b83bb1de38cb6bf0da41fd4b95c6/vector-image-to-vector.jpg', 'https://fiverr-res.cloudinary.com/image/upload/t_gig_pdf_gallery_view_ver4,f_jpg/20171106/Logo-5_n3naw3.jpg', 'https://fiverr-res.cloudinary.com/image/upload/t_gig_pdf_gallery_view_ver4,f_jpg/20190109/Logo-6_orcsly.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/78cf272864a5a9d0415d6c4164c46c18-1698813011/MATT-SMITH/vector-image-to-vector.png', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/78cf272864a5a9d0415d6c4164c46c18-1698813011/MATT-SMITH/vector-image-to-vector.png', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/04559461ec7c3eacaf96cce6b9c5dc9f-1698687802/80x60cm/vector-image-to-vector.png'],
     ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/159121575/original/873e0f308601a693aedcd9dfde68245ba673c8a4/real-estate-housing-description-for-advertisements-and-marketing.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/159121575/original/4e15d262bed8324641760514aba100925d4af982/real-estate-housing-description-for-advertisements-and-marketing.png', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/159121575/original/1119faf8d7a7177f47b2c1473616771e1a477583/real-estate-housing-description-for-advertisements-and-marketing.png', 'https://fiverr-res.cloudinary.com/image/upload/t_gig_pdf_gallery_view_ver4,f_jpg/20220503/Working%20with%20Me%20(3)_tyo6yi.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_gig_pdf_gallery_view_ver4,q_auto,f_auto/attachments/delivery/asset/5e196d81a5fc8272fccba7a184c70f2e-1687178196/2165%20Bernadette%20Ct%20Wall%20NJ%20Flyer%20(1)/real-estate-housing-description-for-advertisements-and-marketing.pdf', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_gig_pdf_gallery_view_ver4,q_auto,f_auto/attachments/delivery/asset/2a312f277ee4fb0a49a42a41857e6801-1681560903/140%20Majestic%20Shores%20Lane_%20La%20Porte%20Tx.%2077571%20(1)/real-estate-housing-description-for-advertisements-and-marketing.pdf'],
     ['https://fiverr-res.cloudinary.com/videos/so_0.0,t_main1,q_auto,f_auto/hzukxfzmo1vdyo8xs2oi/develop-a-chatgpt-gpt-or-gpt3-ai-model-for-you.png', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/316697701/original/589af8260a6ce4b3549022074fc92751541f4dae/develop-a-chatgpt-gpt-or-gpt3-ai-model-for-you.jpg'],
@@ -26,57 +27,58 @@ const productImages = [
     ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/144181078/original/650df8470dc24f152502963672f5d740bf5fb930/do-business-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/144181078/original/b74182de4d8a73a15a56ba74e4676664dd760e43/do-business-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/144181078/original/e88627b8acefa42c2f020e1bef4c58d699498b47/do-business-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/fff6e178b55d961f4c8aca749806b3ff-1679413543/358EC172-A452-48CF-A0AD-441592AAF040/do-business-logo-design.jpeg'],
     ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/15719089/original/4a6b8991f0aa110716d08b6b4f92896c6a82eb3a/do-unique-and-professional-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/15719089/original/811e0a35007d2841c9948d287fa0ceb9b8c05c30/do-unique-and-professional-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/15719089/original/17b357d81c5cf1847d42877c34b4a407fb5e33b4/do-unique-and-professional-logo-design.jpg', 'https://fiverr-res.cloudinary.com/image/upload/t_gig_pdf_gallery_view_ver4,f_jpg/20230607/Logo%20Design%20Modern%203_zkn7sv.jpg'],
     ['https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/50672784/original/7da55cf8d5be59284cd5c816f4ea2b946812b354/do-awesome-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/50672784/original/8448226d0b6a7459fd8d06ca6ce240386a9d5772/do-awesome-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/50672784/original/ba7598ae8d3450b8166fbe48f833b30422f4638b/do-awesome-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/e4972aa1f6140b00d6317ae1f793644a-1698386506/preview/do-awesome-logo-design.jpg', 'https://fiverr-res.cloudinary.com/images/t_smartwm/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/a4825e9885d8a5782333fa37fb18cb66-1698210371/preview%20(2)/do-awesome-logo-design.jpg'],
-    ['https://picsum.photos/550/370?random=${1}','https://picsum.photos/550/370?random=${2}','https://picsum.photos/550/370?random=${3}','https://picsum.photos/550/370?random=${4}'],
-    ['https://picsum.photos/550/370?random=${12}','https://picsum.photos/550/370?random=${21}','https://picsum.photos/550/370?random=${31}','https://picsum.photos/550/370?random=${41}'],
-    ['https://picsum.photos/550/370?random=${13}','https://picsum.photos/550/370?random=${22}','https://picsum.photos/550/370?random=${32}','https://picsum.photos/550/370?random=${42}'],
-    ['https://picsum.photos/550/370?random=${14}','https://picsum.photos/550/370?random=${23}','https://picsum.photos/550/370?random=${33}','https://picsum.photos/550/370?random=${43}'],
-    ['https://picsum.photos/550/370?random=${15}','https://picsum.photos/550/370?random=${24}','https://picsum.photos/550/370?random=${34}','https://picsum.photos/550/370?random=${44}'],
-    ['https://picsum.photos/550/370?random=${16}','https://picsum.photos/550/370?random=${25}','https://picsum.photos/550/370?random=${35}','https://picsum.photos/550/370?random=${45}'],
-    ['https://picsum.photos/550/370?random=${17}','https://picsum.photos/550/370?random=${26}','https://picsum.photos/550/370?random=${36}','https://picsum.photos/550/370?random=${46}'],
-    ['https://picsum.photos/550/370?random=${18}','https://picsum.photos/550/370?random=${27}','https://picsum.photos/550/370?random=${37}','https://picsum.photos/550/370?random=${47}'],
-    ['https://picsum.photos/550/370?random=${19}','https://picsum.photos/550/370?random=${28}','https://picsum.photos/550/370?random=${38}','https://picsum.photos/550/370?random=${48}'],
-    ['https://picsum.photos/550/370?random=${10}','https://picsum.photos/550/370?random=${29}','https://picsum.photos/550/370?random=${39}','https://picsum.photos/550/370?random=${49}'],
-    ['https://picsum.photos/550/370?random=${11}','https://picsum.photos/550/370?random=${20}','https://picsum.photos/550/370?random=${30}','https://picsum.photos/550/370?random=${40}'],
+    ['https://picsum.photos/550/370?random=${1}', 'https://picsum.photos/550/370?random=${2}', 'https://picsum.photos/550/370?random=${3}', 'https://picsum.photos/550/370?random=${4}'],
+    ['https://picsum.photos/550/370?random=${12}', 'https://picsum.photos/550/370?random=${21}', 'https://picsum.photos/550/370?random=${31}', 'https://picsum.photos/550/370?random=${41}'],
+    ['https://picsum.photos/550/370?random=${13}', 'https://picsum.photos/550/370?random=${22}', 'https://picsum.photos/550/370?random=${32}', 'https://picsum.photos/550/370?random=${42}'],
+    ['https://picsum.photos/550/370?random=${14}', 'https://picsum.photos/550/370?random=${23}', 'https://picsum.photos/550/370?random=${33}', 'https://picsum.photos/550/370?random=${43}'],
+    ['https://picsum.photos/550/370?random=${15}', 'https://picsum.photos/550/370?random=${24}', 'https://picsum.photos/550/370?random=${34}', 'https://picsum.photos/550/370?random=${44}'],
+    ['https://picsum.photos/550/370?random=${16}', 'https://picsum.photos/550/370?random=${25}', 'https://picsum.photos/550/370?random=${35}', 'https://picsum.photos/550/370?random=${45}'],
+    ['https://picsum.photos/550/370?random=${17}', 'https://picsum.photos/550/370?random=${26}', 'https://picsum.photos/550/370?random=${36}', 'https://picsum.photos/550/370?random=${46}'],
+    ['https://picsum.photos/550/370?random=${18}', 'https://picsum.photos/550/370?random=${27}', 'https://picsum.photos/550/370?random=${37}', 'https://picsum.photos/550/370?random=${47}'],
+    ['https://picsum.photos/550/370?random=${19}', 'https://picsum.photos/550/370?random=${28}', 'https://picsum.photos/550/370?random=${38}', 'https://picsum.photos/550/370?random=${48}'],
+    ['https://picsum.photos/550/370?random=${10}', 'https://picsum.photos/550/370?random=${29}', 'https://picsum.photos/550/370?random=${39}', 'https://picsum.photos/550/370?random=${49}'],
+    ['https://picsum.photos/550/370?random=${11}', 'https://picsum.photos/550/370?random=${20}', 'https://picsum.photos/550/370?random=${30}', 'https://picsum.photos/550/370?random=${40}'],
 
 
 ]
 
 
-async function query(filterBy = {}) {
-    // return httpService.get(BASE_URL, filterBy);
+// return httpService.get(BASE_URL, filterBy);
+async function query() {
+    var products = await storageService.query(STORAGE_KEY)
+    return products
 
-    let productToDisplay = [...products];
+    // let productToDisplay = [...products];
 
-    if (filterBy.txt) {
-        const regex = new RegExp(filterBy.txt, 'i');
-        productToDisplay = productToDisplay.filter((product) => {
-            return (
-                product.title.match(regex) || // Match by title
-                product.tags.some((tag) => tag.match(regex)) // Match by tags
-            );
-        });
-    }
+    // if (filterBy.txt) {
+    //     const regex = new RegExp(filterBy.txt, 'i');
+    //     productToDisplay = productToDisplay.filter((product) => {
+    //         return (
+    //             product.title.match(regex) || // Match by title
+    //             product.tags.some((tag) => tag.match(regex)) // Match by tags
+    //         );
+    //     });
+    // }
 
-    if (filterBy.price) {
-        productToDisplay = productToDisplay.filter((product) => product.price <= filterBy.price);
-    }
+    // if (filterBy.price) {
+    //     productToDisplay = productToDisplay.filter((product) => product.price <= filterBy.price);
+    // }
 
-    if (filterBy.tags && filterBy.tags.length > 0) {
-        productToDisplay = productToDisplay.filter((product) => {
-            return product.tags.some((tag) => filterBy.tags.includes(tag));
-        });
-    }
-    if (filterBy.userId) {
-        productToDisplay = productToDisplay.filter((product) => product.owner._id === filterBy.userId);
-    }
-    if (filterBy.buyerId) {
-        orders = orders.filter((order) => order.buyer._id === filterBy.buyerId);
-        }
+    // if (filterBy.tags && filterBy.tags.length > 0) {
+    //     productToDisplay = productToDisplay.filter((product) => {
+    //         return product.tags.some((tag) => filterBy.tags.includes(tag));
+    //     });
+    // }
+    // if (filterBy.userId) {
+    //     productToDisplay = productToDisplay.filter((product) => product.owner._id === filterBy.userId);
+    // }
+    // if (filterBy.buyerId) {
+    //     orders = orders.filter((order) => order.buyer._id === filterBy.buyerId);
+    //     }
 
 
-    return productToDisplay;
+    // return productToDisplay;
 }
-
 function getById(productId) {
     return storageService.get(STORAGE_KEY, productId)
 }
@@ -90,18 +92,18 @@ async function save(product) {
         savedProduct = await storageService.put(STORAGE_KEY, product)
     } else {
         // Later, owner is set by the backend
-        product.owner = userService.getLoggedinUser()
+        // product.owner = userService.getLoggedinUser()
         savedProduct = await storageService.post(STORAGE_KEY, product)
     }
     return savedProduct
 }
 function getImgs() {
 
-    return productImages[utilService.getRandomIntInclusive(0,24)]
+    return productImages[utilService.getRandomIntInclusive(0, 24)]
 }
 function getDemoProduct() {
     return {
-        imgUrl: getImgs(),
+        imgUrl: getImgs(1),
         // name: utilService.makeLorem(1),
         title: utilService.makeLorem(5),
         price: utilService.getRandomIntInclusive(100, 300),

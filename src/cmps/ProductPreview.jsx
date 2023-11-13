@@ -1,4 +1,5 @@
-export function ProductPreview(onAddToCart, product) {
+export function ProductPreview({onAddToCart, product}) {
+    console.log('product:', product)
     return (
         <section className="product-card">
             <div className="product-details-container">
@@ -9,7 +10,7 @@ export function ProductPreview(onAddToCart, product) {
                     <p className="product-title">{product.title}</p>
                     <p className="product-price">{product.price}</p>
                 </div>
-                <button className="cart-btn" onClick={onAddToCart()}></button>
+                {/* <button className="cart-btn" onClick={onAddToCart()}>❤</button> */}
 
 
             </div>
