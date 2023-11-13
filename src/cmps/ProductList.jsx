@@ -4,9 +4,9 @@ export function ProductList({onAddToCart,products}){
 return(
     <>  
     <div className="list">
-        <div className="amount">product available{products?.length}
+        {/* <div className="amount">product available{products?.length}
 
-        </div>
+        </div> */}
 
     </div>
     <ul className='product-list'>
