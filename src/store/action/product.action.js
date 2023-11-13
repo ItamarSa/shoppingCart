@@ -12,6 +12,7 @@ export function getActionRemoveProduct(productId) {
     }
 }
 export function getActionAddProduct(product) {
+    console.log('productgetaction:', product)
     return {
         type: ADD_PRODUCT,
         product
@@ -34,6 +35,7 @@ export async function loadProducts() {
     try {
 
         const products = await productService.query()
+        console.log('products:', products)
         // const products = await productService.query(filterBy)
         store.dispatch({
             type: SET_PRODUCTS,

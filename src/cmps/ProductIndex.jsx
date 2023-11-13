@@ -1,27 +1,33 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { ProductList } from "./ProductList"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { productService } from "../services/product.service"
-import { loadProducts } from "../store/action/product.action"
+import { addProduct, loadProducts } from "../store/action/product.action"
 
-export function ProductIndex(){
+export function ProductIndex() {
 
-    const products = useSelector(storeState => storeState.productModule.products)
+
+    const productsPerPage = 6
+    const [currentPage, setCurrentPage] = useState(1)
+
+    const products = useSelector(
+        (storeState) => storeState.productModule.products
+    )
 
     useEffect(() => {
         try {
-              loadProducts()
-            
+            loadProducts()
+
         } catch (err) {
             console.log('err:', err)
             showErrorMsg('Cannot load toys')
         }
-      
+
     }, [])
 
-    async function onAddToCart(product){
-        addToCart(car)
+    async function onAddToCart(product) {
+        addToCart(product)
         showSuccessMsg('Added to Cart')
     }
     async function onAddProduct() {
@@ -34,17 +40,42 @@ export function ProductIndex(){
             showErrorMsg('Cannot add product')
         }
     }
+    const indexOfLastProduct = currentPage * productsPerPage
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+    const currentProducts = products.slice(
+        indexOfFirstProduct,
+        indexOfLastProduct
+    )
+
+    const totalPages = Math.ceil(products.length / productsPerPage)
 
 
-return(
-    <div className="products">
-        <button onClick={onAddProduct}>+</button>
-        <ProductList
-        products={products}
-        onAddToCart={onAddToCart}
-        />
+    return (
+        <div className="products">
+            <button onClick={() => onAddProduct()}>+</button>
+            <ProductList products={currentProducts} onAddToCart={onAddToCart} />
 
-    </div>
-)
-
+            <div className="pagination">
+                <button
+                    onClick={() =>
+                        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1))
+                    }
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+                <span>{`${currentPage} / ${totalPages}`}</span>
+                <button
+                    onClick={() =>
+                        setCurrentPage((prevPage) =>
+                            Math.min(prevPage + 1, totalPages)
+                        )
+                    }
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
+            </div>
+        </div>
+    )
 }
