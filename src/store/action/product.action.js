@@ -33,7 +33,7 @@ export function getActionUpdateProduct(product) {
 export async function loadProducts() {
     try {
 
-        const { filterBy } = store.getState().productModule
+        const products = await productService.query()
         // const products = await productService.query(filterBy)
         store.dispatch({
             type: SET_PRODUCTS,

@@ -6,9 +6,8 @@ export function ProductPreview(onAddToCart, product) {
                     <img src={product.imgUrl} alt="product img" />
                 </div>
                 <div className="product-details">
-                    <p className="product-title"></p>
-                    <p className="product-price"></p>
-                    <p className="product-title"></p>
+                    <p className="product-title">{product.title}</p>
+                    <p className="product-price">{product.price}</p>
                 </div>
                 <button className="cart-btn" onClick={onAddToCart()}></button>
 

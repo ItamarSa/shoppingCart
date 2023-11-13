@@ -1,10 +1,10 @@
 import { ProductPreview } from "./ProductPreview";
 
-export function ProductList(onAddToCart,products){
+export function ProductList({onAddToCart,products}){
 return(
     <>  
     <div className="list">
-        <div className="amount">product available{product.length}
+        <div className="amount">product available{products.length}
 
         </div>
 
