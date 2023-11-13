@@ -3,7 +3,7 @@ import { ProductList } from "./ProductList"
 import { useSelector } from "react-redux"
 import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { productService } from "../services/product.service"
-import { addProduct, loadProducts } from "../store/action/product.action"
+import { addProduct, addToCart, loadProducts } from "../store/action/product.action"
 
 export function ProductIndex() {
 

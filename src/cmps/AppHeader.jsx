@@ -7,6 +7,12 @@ const homeSymbol = <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http:/
 export function AppHeader() {
     const dispatch = useDispatch()
     const isCartShown = useSelector(storeState => storeState.isCartShown)
+    // const count = useSelector(storeState => storeState.count)
+
+    // function changeCount(diff) {
+    //     dispatch({type:'CHANGE_BY', diff})
+    // }
+
 
 
     return (
