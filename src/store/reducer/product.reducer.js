@@ -11,6 +11,11 @@ export const SET_FILTER = 'SET_FILTER'
 
 export const ADD_ORDER = 'ADD_ORDER'
 
+export const SET_CART_IS_SHOWN = 'SET_CART_IS_SHOWN'
+export const REMOVE_CAR_FROM_CART = 'REMOVE_CAR_FROM_CART'
+export const ADD_CAR_TO_CART = 'ADD_CAR_TO_CART'
+export const CLEAR_CART = 'CLEAR_CART'
+
 
 
 const initialState = {
@@ -52,6 +57,22 @@ export function productReducer(state = initialState, action) {
             // case RESET_FILTER_BY:
             //     // newState = { ...state, filterBy: productService.getDefaultFilter() };
             //     break
+
+            // Shopping Cart
+        case SET_CART_IS_SHOWN:
+            return { ...state, isCartShown: action.isCartShown }
+
+        case ADD_CAR_TO_CART:
+            shoppingCart = [...state.shoppingCart, action.car]
+            return { ...state, shoppingCart }
+
+        case REMOVE_CAR_FROM_CART:
+            shoppingCart = state.shoppingCart.filter(car => car._id !== action.carId)
+            return { ...state, shoppingCart }
+
+        case CLEAR_CART:
+            return { ...state, shoppingCart: [] }
+
 
         case ADD_ORDER:
             newState = { ...state, orders: [...state.orders, action.order] }

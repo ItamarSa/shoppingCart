@@ -1,0 +1,28 @@
+.main-header {
+    min-height: 60px;
+    background: #423e3f;
+    color: white;
+    section.container {
+        display: flex;
+        align-items: center;
+        h1.logo {
+            flex-grow: 1;
+            font-weight: 600;
+        }
+
+        > section {
+            flex-grow: 1;
+        }
+
+        .back {
+            flex-grow: 1;
+        }
+
+        nav {
+
+            a:not(:last-child) {
+                margin-right: 10px;
+            }
+        }
+    }
+}
